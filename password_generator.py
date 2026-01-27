@@ -22,10 +22,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 file_path = BASE_DIR / 'words_alpha.txt'
 
-def generatePassphrase():
+def generatePassphrase(numWords):
     with open(file_path) as f:
         words = [word.strip() for word in f]
-        password = ' '.join(secrets.choice(words) for i in range(4))
+        password = ' '.join(secrets.choice(words) for i in range(numWords))
     return password
     
 def generateString(length):
@@ -38,11 +38,24 @@ def generateString(length):
             break
     return password
 
-def generatePassword(mode, length):
+def generatePassword(mode):
     if mode == 1:
-        passphrase = generatePassphrase()
+        print("How many words would you like your passphrase to be? (Enter a number from 4-8 inclusive)")
+        numWords = int(input("Answer: "))
+        while (numWords < 4) | (numWords > 8):
+            print("Please enter a number between 4 and 8 (inclusive) to continue!")
+            print()
+            numWords = int(input("Answer: "))
+        passphrase = generatePassphrase(numWords) 
         return passphrase
+    
     elif mode == 2:
+        print("How many characters would you like your password to be? (Enter a number from 8-32 inclusive)") 
+        length = int(input("Answer: "))
+        while (length < 8) | (length > 32):
+            print("Please enter a number between 8 and 32 (inclusive) to continue!")
+            print()
+            length = int(input("Answer: "))
         stringPass = generateString(length)
         return stringPass
 

@@ -30,23 +30,32 @@ def userOption():
 def getUserPassword():
     userPassword = input("Please enter your password: ")
     return userPassword
- 
- # TODO: Change function name to something more suitable
-def passwordLength():
-    print("How many characters would you like your password to be? (Enter a number from 8-32 inclusive)")
-    length = int(input("Answer: "))
-    while (length < 8) | (length > 32):
-        print("Please enter a number between 8 and 32 (inclusive) to continue!")
-        print()
-        length = int(input("Answer: "))
-    return length
 
 def passwordMode():
     mode = int(input("Answer: "))
     return mode
+ 
+ # TODO: Change function name to something more suitable
+# def passwordCharLength(mode):
+#     print("How many characters would you like your password to be? (Enter a number from 8-32 inclusive)")     
+#     length = int(input("Answer: "))
+#     while (length < 8) | (length > 32):
+#         print("Please enter a number between 8 and 32 (inclusive) to continue!")
+#         print()
+#         length = int(input("Answer: "))
+#     return length
 
-def getGeneratedPassword(mode, length):
-    generatedPassword = password_generator.generatePassword(mode, length)
+# def passphraseNumWords(mode):
+#     print("How many words would you like your passphrase to be? (Enter a number from 4-8 inclusive)")
+#     numWords = int(input("Answer: "))
+#     while (numWords < 4) | (numWords > 8):
+#         print("Please enter a number between 4 and 8 (inclusive) to continue!")
+#         print()
+#         numWords = int(input("Answer: "))
+#     return numWords
+
+def getGeneratedPassword(mode):
+    generatedPassword = password_generator.generatePassword(mode)
     return generatedPassword
 
 # def displayPasswordEntropy():
@@ -55,11 +64,11 @@ def getGeneratedPassword(mode, length):
 def displayTimeToCrack():
     print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(getUserPassword())))
 
-def displayGeneratedPassword(mode, length):
-    print("Your generated password is: " + getGeneratedPassword(mode, length))
+def displayGeneratedPassword(mode):
+    print("Your generated password is: " + getGeneratedPassword(mode))
     
 def passwordCheckerMenu():
-    print("Password Strength Checker 🔒")
+    print("Password Strength Checker 📊")
     print("Details...")
     print()
     # displayPasswordEntropy()
@@ -69,8 +78,8 @@ def passwordCheckerMenu():
 
 def passwordGeneratorMenu():
     print("")
-    print("Welcome to Password Generator!")
-    print("Please answer the questions below to generate a password to your liking")
+    print("Password Generator 🔒")
+    print("Please answer the questions below to generate a password")
     print()
     print("What kind of password you would like? (Enter '1' or '2')")
     print()
@@ -81,7 +90,7 @@ def passwordGeneratorMenu():
     print("Example: a9Fq7XrL2mP8ZKcE")
     print()
     # TODO: Add a 3rd option as 3. Random String (Alphanumeric + Symbols)
-    displayGeneratedPassword(passwordMode(), passwordLength())
+    displayGeneratedPassword(passwordMode())
     
         
 def displayMenu():
@@ -93,7 +102,7 @@ def displayMenu():
     print(r" ▐▌   ▐▌ ▐▌▗▄▄▞▘▗▄▄▞▘▐▙█▟▌▝▚▄▞▘▐▌ ▐▌▐▙▄▄▀    ▗▄▄▞▘  █  ▐▌ ▐▌▐▙▄▄▖▐▌  ▐▌▝▚▄▞▘  █  ▐▌ ▐▌    ▝▚▄▄▖▐▌ ▐▌▐▙▄▄▖▝▚▄▄▖▐▌ ▐▌▐▙▄▄▖▐▌ ▐▌    ▐▌ ▐▌▐▌  ▐▌▐▙▄▄▀    ▝▚▄▞▘▐▙▄▄▖▐▌  ▐▌▐▙▄▄▖▐▌ ▐▌▐▌ ▐▌ █ ▝▚▄▞▘▐▌ ▐▌")
     print("=================================================================================================================================================================================================")
     print("=================================================================================================================================================================================================")
-    print("Welcome to Python Strength Checker and Generator! 👋")
+    print("Welcome to Password Strength Checker and Generator! 👋")
     print("Text that describes what this does...")
     print()
     print("Choose an option to continue:")
