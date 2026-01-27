@@ -1,10 +1,13 @@
-########################################################
-# Author: Muneeb Mennad                                #
-# Project Name: Password Strength Checker              #
-# File Name: main.py                                   #
-# Date: 2026-01-24                                     #
-# Github Username: pchstpch                            #
-########################################################
+##############################################################################################################################################
+# Author: Muneeb Mennad                                                                                                                      #
+# Project Name: Password Strength Checker & Generator                                                                                        #
+# File Name: entropy.py                                                                                                                      #
+# Project Start: 2026-01-24                                                                                                                  #
+# Github Username: pchstpch                                                                                                                  #
+#                                                                                                                                            #
+##############################################################################################################################################
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 
 import string
@@ -100,6 +103,5 @@ def getTimeToCrack(password):
     sampleSpace = getSampleSpaceSize(password)
     timeToCrack = sampleSpace/(GUESSES_PER_SEC*SECONDS_PER_YEAR)
     return timeToCrack
-    
-        
-# WIP
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
