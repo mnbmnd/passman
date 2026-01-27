@@ -1,1 +1,2 @@
 1. Add option to use in terminal or GUI (Tkinter)
+2. Add reference to english-words repo

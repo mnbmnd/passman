@@ -31,7 +31,7 @@ def generateString(length):
             break
     return password
 
-def generatePassword(length, mode):
+def generatePassword(mode, length):
     if mode == 1:
         passphrase = generatePassphrase()
         return passphrase
