@@ -28,31 +28,45 @@ def userOption():
         print("Have a wonderful day 😄")
 
 def getUserPassword():
-    userPassword = input("Please enter your password: ")
+    if userPassword == None:
+        userPassword = input("Please enter your password: ")
     return userPassword
 
 def passwordMode():
     mode = int(input("Answer: "))
     return mode
 
-def getGeneratedPassword(mode):
+def generateNewPassword(mode):
     generatedPassword = password_generator.generatePassword(mode)
     return generatedPassword
 
-def displayPasswordEntropy():
-     print("Entropy: {:.1f}".format(entropy.getEntropy(getUserPassword())))
+def displayPasswordEntropy(generatedPassword = None):
+    if generateNewPassword == None:
+        print("Entropy: {:.1f}".format(entropy.getEntropy(getUserPassword())))
+    else:
+        print("Entropy: {:.1f}".format(entropy.getEntropy(generatedPassword)))
     
-def displayTimeToCrack():
-    print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(getUserPassword())))
+def displayTimeToCrack(generatedPassword = None):
+    if generateNewPassword == None:
+        print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(getUserPassword())))
+    else:
+        print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(generatedPassword)))
 
+def getGeneratedPassword(mode):
+    generatedPassword = generateNewPassword(mode)
+    return generatedPassword
+    
 def displayGeneratedPassword(mode):
-    print("Your generated password is: " + getGeneratedPassword(mode))
+    generatedPassword = getGeneratedPassword(mode)
+    print("Your new password is: " + generatedPassword)
+    displayTimeToCrack(generatedPassword)
+    displayPasswordEntropy(generatedPassword)
     
 def passwordCheckerMenu():
     print("Password Strength Checker 📊")
     print("Details...")
     print()
-    displayPasswordEntropy()
+    # displayPasswordEntropy()
     print()
     displayTimeToCrack()
 
@@ -71,10 +85,10 @@ def passwordGeneratorMenu():
     print()
     # TODO: Add a 3rd option as 3. Random String (Alphanumeric + Symbols)
     displayGeneratedPassword(passwordMode())
+    print()
     print("Select an option to continue:")
-    print("1. Check your new generated password's strength")
-    print("2. Generate a new password")
-    print("3. Quit")
+    print("1. Generate a new password")
+    print("2. Quit")
     
         
 def displayMenu():
