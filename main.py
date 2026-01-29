@@ -27,7 +27,7 @@ def optionMenu():
         passwordCheckerMenu()
 
 def getUserPassword():
-    userPassword = input("Please enter your password: ")
+    userPassword = input("Enter your password to continue: ")
     return userPassword
 
 def passwordType():
@@ -38,17 +38,14 @@ def generateNewPassword(passwordType):
     generatedPassword = password_generator.generatePassword(passwordType)
     return generatedPassword
 
-def displayPasswordEntropy(generatedPassword = None):
+def displayPasswordStrength(generatedPassword = None):
     if generatedPassword == None:
-        print("Entropy: {:.1f}".format(entropy.getEntropy(getUserPassword())))
+        userPassword = getUserPassword()
+        print("Entropy: {:.1f}".format(entropy.getEntropy(userPassword)))
+        print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(userPassword)))
     else:
         print("Entropy: {:.1f}".format(entropy.getEntropy(generatedPassword)))
-    
-def displayTimeToCrack(generatedPassword = None):
-    if generatedPassword == None:
-        print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(getUserPassword())))
-    else:
-        print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(generatedPassword)))
+        print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(generatedPassword)))       
 
 def getGeneratedPassword(passwordType):
     generatedPassword = generateNewPassword(passwordType)
@@ -64,27 +61,34 @@ def passwordCheckerMenu():
     print()
     print("=" * 18)
     print("Password Strength Checker")
-    print("Details...")
+    section("Description")
+    print("The Password Checker analyzes a password and estimates how secure \nit is against common attack methods.")
     print()
+    print("It measures:")
+    print(" 1. Password entropy – a way of quantifying how unpredictable a password \nis based on its length and the characters used.")
+    print(" 2. Time to crack – an estimate of how long it would \ntake to brute-force the password assuming modern hardware and realistic attack speeds.")
     print()
-    displayTimeToCrack()
-    displayPasswordEntropy()
+    print("Higher entropy generally means more possible combinations, which increases the \n"
+    "time required to crack the password. The checker uses this \n"
+    "information to give a practical sense of strength rather than \n"
+    "a simple “weak/strong” label.")
+    print()
+    displayPasswordStrength()
 
 def passwordGeneratorMenu():
     print("")
     print("=" * 18)
     print("Password Generator")
-    section("Overview")
+    section("Description")
+    print("The Password Generator creates new passwords for you using secure randomness.")
     print()
-    print("Choose your password type")
-    print()
-    print("1. Passphrase (Easier to remember)")
+    print("You can choose between:")
+    print("1. Passphrase – a sequence of randomly selected words that balances security and memorability")
     print("Example: swell posing gruffly slander onto")
     print()
-    print("2. Random String (Alphanumeric)")
+    print("2. Alphanumeric password – a fully random string of letters and numbers, with an optional \nsymbols setting for additional complexity.")
     print("Example: a9Fq7XrL2mP8ZKcE")
     print()
-    # TODO: Add a 3rd option as 3. Random String (Alphanumeric + Symbols)
     displayGeneratedPassword(passwordType())
     print()
     optionMenu()
@@ -105,15 +109,11 @@ def splash():
 def mainMenu():
     section("Overview")
     print(
-        "This project is a terminal-based password utility that helps \n"
-    "you both generate strong passwords and evaluate existing ones, \n"
-    "it is designed to be simple to use, transparent in how it works, \n"
-    "and focused on real-world security rather than gimmicks. \n"
+        "This project is a terminal-based password utility that helps\nyou both generate strong passwords and evaluate existing ones,\n"
+    "it is designed to be simple to use, transparent in how it works,\nand focused on real-world security rather than gimmicks.\n"
         )
-    print("To get started, run the program in your terminal and \n"
-          "choose between generating a new password or checking the strength \n"
-          "of an existing one. Each mode is interactive and guides \n"
-          "you through the available options."
+    print("To get started, run the program in your terminal and\nchoose between generating a new password or checking the strength\n"
+          "of an existing one. Each mode is interactive and guides\nyou through the available options."
           )
     print()
     optionMenu()
@@ -121,6 +121,6 @@ def mainMenu():
 if __name__ == "__main__":
     splash()
     mainMenu()
-        
+
 # end main
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
