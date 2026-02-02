@@ -32,6 +32,7 @@ def getUserPassword():
 
 def passwordType():
     passwordType = int(input("Answer: "))
+    print()
     return passwordType
 
 def generateNewPassword(passwordType):
@@ -45,7 +46,10 @@ def displayPasswordStrength(generatedPassword = None):
         print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(userPassword)))
     else:
         print("Entropy: {:.1f}".format(entropy.getEntropy(generatedPassword)))
-        print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(generatedPassword)))       
+        print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(generatedPassword)))
+    print()
+    print("To find out more about entropy and time to crack, visit the link below:")
+    print("https://auth0.com/blog/defending-against-password-cracking-understanding-the-math/")       
 
 def getGeneratedPassword(passwordType):
     generatedPassword = generateNewPassword(passwordType)
@@ -54,8 +58,7 @@ def getGeneratedPassword(passwordType):
 def displayGeneratedPassword(passwordType):
     generatedPassword = getGeneratedPassword(passwordType)
     print("Your new password is: " + generatedPassword)
-    displayTimeToCrack(generatedPassword)
-    displayPasswordEntropy(generatedPassword)
+    displayPasswordStrength(generatedPassword)
     
 def passwordCheckerMenu():
     print()
@@ -74,6 +77,8 @@ def passwordCheckerMenu():
     "a simple “weak/strong” label.")
     print()
     displayPasswordStrength()
+    print()
+    optionMenu()
 
 def passwordGeneratorMenu():
     print("")
