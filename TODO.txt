@@ -19,4 +19,6 @@
 - Give user option to save a password to a File | 
 - Extend password checker to account for known password words | 
 - Ask users for their first and last name to strengthen checker |
+- Hide the users password while they are typing it in, hover over? |
+- Extend project to work directly with the shell | 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
