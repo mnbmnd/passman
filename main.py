@@ -9,6 +9,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 import entropy
 import password_generator
+import getpass
 import os
 
 def clear():
@@ -27,8 +28,17 @@ def optionMenu():
         passwordCheckerMenu()
 
 def getUserPassword():
-    userPassword = input("Enter your password to continue: ")
+    userPassword = getpass.getpass("Enter your password to continue: ")
     return userPassword
+
+def revealPassword(userPassword):
+    print('Press "Y" to show password')
+    reveal = input()
+    if reveal.upper() == "Y":
+        print(userPassword)
+    else:
+        print("Nothing to show")
+    print()
 
 def passwordType():
     passwordType = int(input("Answer: "))
@@ -42,9 +52,11 @@ def generateNewPassword(passwordType):
 def displayPasswordStrength(generatedPassword = None):
     if generatedPassword == None:
         userPassword = getUserPassword()
+        revealPassword(userPassword)
         print("Entropy: {:.1f}".format(entropy.getEntropy(userPassword)))
         print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(userPassword)))
     else:
+        revealPassword(generatedPassword)
         print("Entropy: {:.1f}".format(entropy.getEntropy(generatedPassword)))
         print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(generatedPassword)))
     print()
