@@ -9,7 +9,8 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 import entropy
 import password_generator
-from system import clear_screen
+import system
+import authentication
 import getpass
 
 
@@ -18,8 +19,10 @@ def optionMenu():
     print("1. Generate a new password")
     print("2. Check password strength")
     print("3. Quit")
+    
     option = int(input("Answer: "))
-    clear_screen()
+    system.clear_screen()
+    
     if option == 1:
         passwordGeneratorMenu()
     elif option == 2:
@@ -28,23 +31,27 @@ def optionMenu():
 
 def getUserPassword():
     userPassword = getpass.getpass("Enter your password to continue: ")
+    
     return userPassword
 
 
 def passwordType():
     passwordType = int(input("Answer: "))
     print()
+    
     return passwordType
 
 
 def generateNewPassword(passwordType):
     generatedPassword = password_generator.generatePassword(passwordType)
+    
     return generatedPassword
 
 
 def displayPasswordStrength(generatedPassword=None):
     if generatedPassword is None:
         userPassword = getUserPassword()
+        
         print("Entropy: {:.1f}".format(entropy.getEntropy(userPassword)))
         print(
             "Time to crack (in years): {:.1f}".format(
@@ -67,11 +74,13 @@ def displayPasswordStrength(generatedPassword=None):
 
 def getGeneratedPassword(passwordType):
     generatedPassword = generateNewPassword(passwordType)
+    
     return generatedPassword
 
 
 def displayGeneratedPassword(passwordType):
     generatedPassword = getGeneratedPassword(passwordType)
+    
     print("Your new password is: ", generatedPassword)
     displayPasswordStrength(generatedPassword)
 
@@ -127,7 +136,7 @@ def passwordGeneratorMenu():
     print()
     displayGeneratedPassword(passwordType())
     print()
-    optionMenu()
+    # optionMenu()
 
 
 def section(title: str):
@@ -142,7 +151,7 @@ def splash():
     print(r"╹  ╹ ╹┗━┛┗━┛┗┻┛┗━┛╹┗╸╺┻┛   ╹ ╹╹ ╹╹ ╹╹ ╹┗━┛┗━╸╹┗╸")
     print()
     input("Press enter to continue...")
-    clear_screen()
+    system.clear_screen()
 
 
 def mainMenu():
@@ -151,11 +160,14 @@ def mainMenu():
         "This project is a terminal-based password utility that helps\nyou both generate strong passwords and evaluate existing ones,\n"
         "it is designed to be simple to use, transparent in how it works,\nand focused on real-world security rather than gimmicks.\n"
     )
-    print(
-        "To get started, run the program in your terminal and\nchoose between generating a new password or checking the strength\n"
-        "of an existing one. Each mode is interactive and guides\nyou through the available options."
-    )
+    print("To get started, please set up or enter your credentials\n")
+    # print(
+    #     "Run the program in your terminal and choose between generating\na new password or checking the strength\n"
+    #     "of an existing one. Each mode is interactive and guides\nyou through the available options."
+    # )
     print()
+    masterCredentials = authentication.set_master_credentials()
+    print(masterCredentials)
     optionMenu()
 
 
