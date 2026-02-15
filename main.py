@@ -14,20 +14,15 @@ import authentication
 import storage
 import getpass
 
-# The main option menu
-def second_option_menu():
-    print("Choose an option to continue:")
-    print("1. Generate a new password")
-    print("2. Check password strength")
-    print("3. Quit")
-    
-    option = int(input("Answer: "))
-    system.clear_screen()
-    
-    if option == 1:
-        pass_generator_menu()
-    elif option == 2:
-        pass_checker_menu()
+# Sets the master password
+def create_master_credentials():
+    masterCredentials = authentication.set_master_credentials()
+    return masterCredentials
+
+# Stores the master's username, password salt, and password hash
+def store_master_credentials(masterCredentials):
+    storage.save_master_credentials(masterCredentials[0], masterCredentials[1], masterCredentials[2])
+
 
 # Gets the user's inputted password
 def get_user_password():
@@ -79,6 +74,39 @@ def display_generated_pass(passwordType):
     print("Your new password is: ", generatedPassword)
     display_pass_strength(generatedPassword)
 
+# The first option menu presented
+def first_option_menu():
+    print("To get started, choose an option below:\n")
+    print("1. Setup/update your master password")
+    print("2. Login with your master password")
+    print("3. Quit")
+    
+    option = int(input("Answer: "))
+    system.clear_screen()
+    
+    if option == 1:
+        masterCredentials = create_master_credentials()
+        store_master_credentials(masterCredentials)
+    if option == 3:
+        system.exit_program()
+    
+
+# The second option menu presented
+def second_option_menu():
+    print("Choose an option to continue:")
+    print("1. Generate a new password")
+    print("2. Check password strength")
+    print("3. Quit")
+    
+    option = int(input("Answer: "))
+    
+    if option == 1:
+        pass_generator_menu()
+    elif option == 2:
+        pass_checker_menu()
+    else:
+        system.exit_program()
+        
 # Displays the password checker menu
 def pass_checker_menu():
     print()
@@ -152,13 +180,9 @@ def main_menu():
         "This project is a terminal-based password utility that helps\nyou both generate strong passwords and evaluate existing ones,\n"
         "it is designed to be simple to use, transparent in how it works,\nand focused on real-world security rather than gimmicks.\n"
     )
-    print("To get started, choose an option below:\n")
-    print("1. Setup/update your master password")
-    print("2. Login with your master password")
     print()
-    masterCredentials = authentication.set_master_credentials()
-    storage.save_master_credentials(masterCredentials[0], masterCredentials[1], masterCredentials[2])
-    second_option_menu()
+    first_option_menu()
+    # second_option_menu()
 
 # Main
 if __name__ == "__main__":
