@@ -6,7 +6,7 @@
 **Github Profile**: https://github.com/mnbmnd/
 ___
 ## Current
-- [ ] Add `has_master_credentials()` function to `authentication.py`
+- [x] Add `has_master_credentials()` function to `authentication.py`
   - Check if `master.json` exists
   - Check if file is not empty
   - Validate JSON structure (username, salt, hash)
@@ -21,6 +21,10 @@ ___
   - Test with no `master.json` → should show Setup
   - Test with valid `master.json` → should show Login
   - Test with empty/invalid `master.json` → should show Setup
+
+- [ ] Fix functions and file structure
+  - Move menus to their file
+  - Move authentication and setups to their file
 
 ## Hand-off
 - [ ] Update README.md
