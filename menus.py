@@ -26,23 +26,6 @@ def overview():
     )
     print()
 
-# # Confirmation prompt to quit
-# def quit_confirm(state):
-#     print()
-#     option = int(input("Enter 1 to confirm or 2 to go back: "))
-#     if option == 1:
-#         system.exit_program()
-#         print("Thank you for using passman 👋")
-#         exit(0) # Exit with success
-#     elif option == 2:
-#         if state == 1:
-#             system.clear_screen()
-#             overview()
-#             credentials_menu()
-#         elif state == 2:
-#             system.clear_screen()
-#             main_menu()
-
 def setup_menu():
     print("=" * 80)
     section("Setup")
@@ -54,12 +37,13 @@ def setup_menu():
 def login_menu():
     print("=" * 80)
     section("Login Menu")
+    
+    attemptsRemaining = 3
     loginPassword = authentication.get_user_password()
     success = authentication.authenticate(loginPassword)
-    if success:
-        print("Login Successful")
-        return True
-    return False
+
+    while not success:
+        pass
 
 # The second option menu presented
 def main_menu():

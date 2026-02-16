@@ -7,20 +7,22 @@
 ##############################################################################################################################################
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-import authentication
-import authentication
 import menus
+import authentication
     
 def run_program():
-    menus.main_menu()
-
-# Main
-if __name__ == "__main__":
     menus.splash()
     if not authentication.has_master_credentials():
         menus.overview()
         menus.setup_menu()
-    menus.login_menu()
+    loginSuccessful = menus.login_menu()
+    if loginSuccessful:
+        menus.main_menu()
+    else:
+        exit()
+
+# Main
+if __name__ == "__main__":
     run_program()
     
 # END_MAIN
