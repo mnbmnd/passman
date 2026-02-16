@@ -10,16 +10,19 @@
 import getpass
 import json
 from pathlib import Path
+
+import encrypt
 import storage
 import system
-import encrypt
 
 
-# Gets the user's inputted password
-def get_user_password():
-    userPassword = getpass.getpass("Enter your master password to continue: ")
-
-    return userPassword
+def has_master_credentials():
+    try:
+        masterCredentials = get_master_credentials()
+        if "hash" in masterCredentials and "salt" in masterCredentials:
+            return True
+    except:
+        return False
 
 
 # Sets the master password
@@ -34,15 +37,6 @@ def store_master_credentials(masterCredentials):
     storage.save_master_credentials(
         masterCredentials[0], masterCredentials[1], masterCredentials[2]
     )
-
-
-def has_master_credentials():
-    try:
-        masterCredentials = get_master_credentials()
-        if "hash" in masterCredentials and "salt" in masterCredentials:
-            return True
-    except:
-        return False
 
 
 def authenticate(loginPassword):
@@ -77,15 +71,13 @@ def set_master_credentials():
         passwordConfirm = getpass.getpass(prompt="Confirm password\n")
 
         if password == passwordConfirm:
-            print("Setup successfully completed!")
-            print()
+            print("Setup completed successfully!\n")
             matching = True
         else:
             print("Your passwords do not match!")
-            print("Try again")
-            print()
+            print("Try again\n")
 
-    input("Press enter to continue to login")
+    input("Press enter to continue to login screen..")
     system.clear_screen()
 
     salt = encrypt.generate_salt()

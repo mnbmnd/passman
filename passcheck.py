@@ -101,15 +101,15 @@ def getSampleSpaceSize(password):
     return sampleSpaceSize
 
 
-def getAttemptsPerSecond():
-    # function expands on attempts per second
-    pass
+# def getAttemptsPerSecond():
+#     # function expands on attempts per second
+#     pass
 
 
-def getTimeToCrack(password):
-    sampleSpace = getSampleSpaceSize(password)
-    timeToCrack = sampleSpace / (GUESSES_PER_SEC * SECONDS_PER_YEAR)
-    return timeToCrack
+# def getTimeToCrack(password):
+#     sampleSpace = getSampleSpaceSize(password)
+#     timeToCrack = sampleSpace / (GUESSES_PER_SEC * SECONDS_PER_YEAR)
+#     return timeToCrack
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

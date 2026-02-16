@@ -14,8 +14,14 @@ def clear_screen():
     subprocess.run(["clear"])
 
 
-def exit_program():
+def exit():
     subprocess.run(["reset"])
+    
+
+def whoami():
+    whoami = subprocess.run(["whoami"], capture_output=True, text=True)
+    
+    return whoami.stdout.replace("\n", "") # Returns output of whoami without the newline chr
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
