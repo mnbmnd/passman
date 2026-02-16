@@ -23,7 +23,7 @@ def generatePassphrase(numWords):
 
 
 def generateString(length):
-    characters = string.ascii_letters + string.digits  # + string.punctuation
+    characters = string.ascii_letters + string.digits + string.punctuation
     while True:
         password = "".join(secrets.choice(characters) for i in range(int(length)))
         if (
@@ -48,7 +48,6 @@ def generatePassword(mode):
             print()
         passphrase = generatePassphrase(numWords)
         return passphrase
-
     elif mode == 2:
         print("Choose the number of characters for your password (8-32 inclusive)")
         length = int(input("Answer: "))
@@ -59,7 +58,7 @@ def generatePassword(mode):
             length = int(input("Answer: "))
             print()
         stringPass = generateString(length)
-        return stringPass
+        return stringPass 
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

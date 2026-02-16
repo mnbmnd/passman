@@ -108,22 +108,18 @@ def passgen_menu():
     
     if passgenChoice == 1:
         section_cutter()
-        print("Choose between:")
+        print("Passgen Started\n")
         # \033[1m\033[0m makes text bold
+        print("What would you like to generate?\n")
         print(
-            "  1.\033[1m Passphrase \033[0m– a sequence of randomly selected words"
+            "1. A\033[1m Passphrase \033[0m– a sequence of randomly selected words"
         )
-        print("     Example:  \033[1mswell posing gruffly slander onto\033[0m\n")
-
+        print("└► Example:  \033[1mswell posing gruffly slander onto\033[0m")
+        print("")
         print(
-            "\n  2.\033[1m Alphanumeric \033[0m– a random string of letters and numbers"
+            "2. A\033[1m String \033[0m– a random string of letters, numbers, and symbols"
         )
-        print("     Example:  \033[1ma9Fq7XrL2mP8ZKcEi\033[0m\n")
-        print(
-            "\n  3.\033[1m Alphanumeric with Symbols \033[0m- Adds symbols to a random "
-            "string of letters and numbers"
-        )
-        print("     Example:  \033[1ma9Fq@7X#rL2m!P8Z\033[0m\n")
+        print("└► Example:  \033[1ma9Fq7XrL2mP8ZKcEi\033[0m\n")
         
         passwordType = int(input("Ans: "))
         generatedPassword = passgen.generatePassword(passwordType)
