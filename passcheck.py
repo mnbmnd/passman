@@ -110,7 +110,5 @@ def getSampleSpaceSize(password):
 #     sampleSpace = getSampleSpaceSize(password)
 #     timeToCrack = sampleSpace / (GUESSES_PER_SEC * SECONDS_PER_YEAR)
 #     return timeToCrack
-
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # mnbmnd
