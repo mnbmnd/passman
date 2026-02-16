@@ -6,33 +6,37 @@
 **Github Profile**: https://github.com/mnbmnd/
 ___
 ## Current
-- [ ] Fix logging in logic
-- [ ] Fix quitting logic
-- [ ] Work on implementing this with vim keys or other keybinds
+- [x] Add vscode workspace to ignore
+- [x] Fix quitting logic
+- [x] Fix bug in login menu logic
+- [ ] Add (improve) menu for passgen and passcheck
+    - [ ] Add an option to add symbols to alphanumeric generator
+    - [ ] Add an option to go back to main menu
+    - [ ] Add option to "use master password?" in passcheck menu
+    - [ ] Add visual effects to entropy
+    - [ ] Add a new section
+    - [ ] Remove "Time to crack section"
+    - [ ] Shorten links
+- [ ] Add "settings" to main menu
+- [ ] Add reset password functionality
+- [ ] Fix loop in setup menu
+- [ ] Rewrite the overview section
+
+
 
 ## Hand-off
 - [ ] Update README.md
+- [ ] Clean up code (Functions, comments, PEP-8, etc.)
+- [ ] Add error checking (trys and excepts etc.)
 
 ## Later
 - [ ] Add Settings menu for updating master password
-  - Require login first
-  - Verify old password before allowing update
-  
+- [ ] Rename prompt to something shorter, maybe psm
 - [ ] Implement password vault storage (`passwords.json`)
-  - Encrypt vault with key derived from master password
-  - Add check for vault file to prevent credential overwrites
-
 - [ ] Add fuzzy matching for `passman <site>` CLI
-  - Install `rapidfuzz`
-  - Implement site name matching
-
 - [ ] Add clipboard support
-  - Install `pyperclip`
-  - Auto-copy passwords on retrieval
-
-- [ ] Add TUI (when going full scale)
-  - Consider `prompt_toolkit` or `textual`
-  - Add Enter/ESC navigation
+- [ ] Work on implementing this with vim keys or other keybinds
+- [ ] Add TUI (full scale)
 
 ## Completed ✓
 - [x] Master password authentication with PBKDF2
@@ -43,5 +47,9 @@ ___
 - [x] Update `credentials_menu()` in `main.py`
 - [x] Test both scenarios
 - [x] Fix functions and file structure
+- [x] Fix logging in logic
+- [x] Rename password_generator.py to passgen.py
+- [x] Rename entropy.py to passcheck.py
+- [x] Add the overview section to the splash screen
 
 ###### END_FILE  
