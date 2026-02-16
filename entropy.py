@@ -1,12 +1,12 @@
-##############################################################################################################################################
-# Author: Muneeb Mennad                                                                                                                      #
-# Project Name: Terminal Password Generator                                                                                                  #
-# File Name: entropy.py                                                                                                                      #
-# Project Start: 2026-01-24                                                                                                                  #
-# Github Username: mnbmnd                                                                                                                    #
-##############################################################################################################################################
+#######################################################################################
+# Author: Muneeb Mennad                                                              # 
+# Project Name: Passman                                                             #  
+# File Name: entropy.py                                                            #   
+# Project Start: 2026-01-24                                                         #  
+# Github: https://github.com/mnbmnd                                                  # 
+#######################################################################################
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 import string
 import math
 
@@ -18,31 +18,36 @@ SPACE = 1
 
 BCRYPT_COST = 12
 GUESSES_PER_SEC = 1e5
-SECONDS_PER_YEAR = 6.308*(10**7)
+SECONDS_PER_YEAR = 6.308 * (10**7)
+
 
 def getSize(password):
     return len(password)
 
+
 def getUppercaseCount(password):
     upperCount = 0
     for i in password:
-        if (i.isupper()):
+        if i.isupper():
             upperCount += 1
     return upperCount
-            
+
+
 def getLowercaseCount(password):
     lowerCount = 0
     for i in password:
-        if (i.islower()):
+        if i.islower():
             lowerCount += 1
     return lowerCount
-    
+
+
 def getNumericCount(password):
     numericCount = 0
     for i in password:
-        if (i.isnumeric()):
+        if i.isnumeric():
             numericCount += 1
     return numericCount
+
 
 def getSymbolsCount(password):
     symbols = list(string.punctuation)
@@ -52,6 +57,7 @@ def getSymbolsCount(password):
             symbolsCount += 1
     return symbolsCount
 
+
 def getSpaceCount(password):
     spaceCount = 0
     for i in password:
@@ -59,30 +65,32 @@ def getSpaceCount(password):
             spaceCount += 1
     return spaceCount
 
+
 def getCharactersAvailable(password):
     characters = 0
     if getLowercaseCount(password):
         characters += LOWERCASE
-    
+
     if getUppercaseCount(password):
         characters += UPPERCASE
-    
+
     if getNumericCount(password):
         characters += NUMERICAL
-    
+
     if getSymbolsCount(password):
         characters += SYMBOLS
-    
+
     if getSpaceCount(password):
         characters += SPACE
-        
+
     return characters
+
 
 def getEntropy(password):
     passwordLength = getSize(password)
     r = getCharactersAvailable(password)
     entropy = math.log2(r**passwordLength)
-    
+
     return entropy
 
 
@@ -91,14 +99,18 @@ def getSampleSpaceSize(password):
     n = getSize(password)
     sampleSpaceSize = charactersAvailable**n
     return sampleSpaceSize
-    
+
+
 def getAttemptsPerSecond():
-    #function expands on attempts per second
+    # function expands on attempts per second
     pass
+
 
 def getTimeToCrack(password):
     sampleSpace = getSampleSpaceSize(password)
-    timeToCrack = sampleSpace/(GUESSES_PER_SEC*SECONDS_PER_YEAR)
+    timeToCrack = sampleSpace / (GUESSES_PER_SEC * SECONDS_PER_YEAR)
     return timeToCrack
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# mnbmnd

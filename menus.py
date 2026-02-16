@@ -1,13 +1,24 @@
+#######################################################################################
+# Author: Muneeb Mennad                                                              # 
+# Project Name: Passman                                                             #  
+# File Name: menus.py                                                              #   
+# Project Start: 2026-01-24                                                         #  
+# Github: https://github.com/mnbmnd                                                  # 
+#######################################################################################
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 import entropy
 import system
 import password_generator
 import authentication
 
+
 # Sections formatter
 def section(title: str):
     print()
     print(f"[ {title} ]")
-    
+
+
 # Splash screen art (First screen that shows)
 def splash():
     print()
@@ -16,15 +27,19 @@ def splash():
     input("Press enter to continue...")
     system.clear_screen()
 
+
 # The main menu, shows after splash screen
 def overview():
     print("=" * 80)
     section("Overview")
     print(
-        "This project is a terminal-based password utility that helps\nyou both generate strong passwords and evaluate existing ones,\n"
-        "it is designed to be simple to use, transparent in how it works,\nand focused on real-world security rather than gimmicks.\n"
+        "This project is a terminal-based password utility that helps\nyou both generate strong "
+        "passwords and evaluate existing ones,\n"
+        "it is designed to be simple to use, transparent in how it works,\nand focused on real-world "
+        "security rather than gimmicks.\n"
     )
     print()
+
 
 def setup_menu():
     print("=" * 80)
@@ -33,11 +48,12 @@ def setup_menu():
     masterCredentials = authentication.create_master_credentials()
     authentication.store_master_credentials(masterCredentials)
 
+
 # The login menu
 def login_menu():
     print("=" * 80)
     section("Login Menu")
-    
+
     attemptsRemaining = 3
     loginPassword = authentication.get_user_password()
     success = authentication.authenticate(loginPassword)
@@ -50,6 +66,9 @@ def login_menu():
         loginPassword = authentication.get_user_password()
         attemptsRemaining -= 1
 
+    return success
+
+
 # The second option menu presented
 def main_menu():
     print("=" * 80)
@@ -59,22 +78,25 @@ def main_menu():
     print("1. Generate a new password")
     print("2. Check password strength")
     print("3. Quit")
-    
+
     option = int(input("Answer: "))
-    
+
     if option == 1:
         pass_generator_menu()
     elif option == 2:
         pass_checker_menu()
-    # elif option == 3:
-    #     quit_confirm(2)
+    elif option == 3:
+        system.clear_screen()
+        confirmed = input("Enter 0 to go back or 1 to confirm")
+
 
 # Gets user's option to generate either a passphrase or alphanumeric password
 def password_type():
     passwordType = int(input("Answer: "))
     print()
-    
+
     return passwordType
+
 
 # Displays the password generator menu
 def pass_generator_menu():
@@ -89,7 +111,8 @@ def pass_generator_menu():
     print("You can choose between:")
     # \033[1m\033[0m makes text bold
     print(
-        "1.\033[1m Passphrase \033[0m– a sequence of randomly selected words that balances security and memorability"
+        "1.\033[1m Passphrase \033[0m– a sequence of randomly selected words that balances "
+        "security and memorability"
     )
     print()
     print("Example:")
@@ -97,7 +120,8 @@ def pass_generator_menu():
     print()
     print()
     print(
-        "2.\033[1m Alphanumeric password \033[0m– a fully random string of letters and numbers, with an optional \nsymbols setting for additional complexity."
+        "2.\033[1m Alphanumeric password \033[0m– a completely random string of letters and numbers, with an optional \n"
+        "symbols setting for additional complexity."
     )
     print()
     print("Example:")
@@ -106,6 +130,7 @@ def pass_generator_menu():
     display_generated_pass(password_type())
     print()
 
+
 # Displays the password checker menu
 def pass_checker_menu():
     print()
@@ -113,15 +138,18 @@ def pass_checker_menu():
     print("Password Strength Checker")
     section("Description")
     print(
-        "The Password Checker analyzes a password and estimates how secure \nit is against common attack methods."
+        "The Password Checker analyzes a password and estimates how secure \n"
+        "it is against common attack methods."
     )
     print()
     print("It measures:")
     print(
-        " 1. Password entropy – a way of quantifying how unpredictable a password \nis based on its length and the characters used."
+        " 1. Password entropy – a way of quantifying how unpredictable a password \n"
+        "is based on its length and the characters used."
     )
     print(
-        " 2. Time to crack – an estimate of how long it would \ntake to brute-force the password assuming modern hardware and realistic attack speeds."
+        " 2. Time to crack – an estimate of how long it would \n"
+        "take to brute-force the password assuming modern hardware and realistic attack speeds."
     )
     print()
     print(
@@ -134,12 +162,13 @@ def pass_checker_menu():
     display_pass_strength()
     print()
     main_menu()
-    
+
+
 # displays the password strength of an inputted password
 def display_pass_strength(generatedPassword=None):
     if generatedPassword is None:
         userPassword = authentication.get_user_password()
-        
+
         print("Entropy: {:.1f}".format(entropy.getEntropy(userPassword)))
         print(
             "Time to crack (in years): {:.1f}".format(
@@ -159,15 +188,21 @@ def display_pass_strength(generatedPassword=None):
         "https://auth0.com/blog/defending-against-password-cracking-understanding-the-math/"
     )
 
+
 # Gets the newly generated password
 def get_generated_pass(passwordType):
     generatedPassword = password_generator.generatePassword(passwordType)
-    
+
     return generatedPassword
+
 
 # Displays the generated password back to the user
 def display_generated_pass(passwordType):
     generatedPassword = get_generated_pass(passwordType)
-    
+
     print("Your new password is: ", generatedPassword)
     display_pass_strength(generatedPassword)
+    
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# mnbmnd
