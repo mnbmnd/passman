@@ -6,19 +6,12 @@
 **Github Profile**: https://github.com/mnbmnd/
 ___
 ## Current
-- [ ] Add (improve) menu for passgen and passcheck
-    - [x] Add an option to add symbols to alphanumeric generator
-    - [x] Add an option to go back to main menu
-    - [ ] Add visual effects to entropy
-    - [x] Remove "Time to crack section"
-    - [ ] Add short links
+- [ ]
+
+## Hand-off
 - [ ] Add "settings" to main menu
 - [ ] Add reset password functionality
 - [ ] Fix loop in setup menu after too many failed attempts to match
-
-
-
-## Hand-off
 - [ ] Update README.md
 - [ ] Clean up code (Functions, comments, PEP-8, etc.)
 - [ ] Add error checking (trys and excepts etc.)
@@ -49,5 +42,6 @@ ___
 - [x] Fix quitting logic
 - [x] Fix bug in login menu logic
 - [x] Rewrite the overview section
+- [x] Add (improve) menu for passgen and passcheck
 
 ###### END_FILE  
