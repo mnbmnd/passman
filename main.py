@@ -15,6 +15,7 @@ import authentication
 def run_program():
     menus.splash()
 
+    # Program goes to login if user credentials are already setup
     if not authentication.has_master_credentials():
         menus.setup_menu()
     loginSuccessful = menus.login_menu()
