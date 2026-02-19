@@ -14,10 +14,10 @@ def clear_screen():
     subprocess.run(["clear"])
 
 
-# Exits program and clears the screen
-def exit():
+# Quits program and clears the screen
+def reset():
     subprocess.run(["reset"])
-
+    
 
 # Gets system username
 def whoami():
