@@ -7,7 +7,6 @@
 #######################################################################################
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-from multiprocessing.sharedctypes import Value
 import getpass
 
 import passcheck
@@ -48,10 +47,6 @@ def get_user_choice(minChoice, maxChoice):
             print("\nEnter a valid number!")
     
     return userChoice
-
-
-def show_confirmation():
-    pass
 
 
 def show_goodbye():
@@ -136,7 +131,7 @@ def show_passgen_menu():
         )
         print("└► Example:  \033[1ma9Fq7XrL2mP8ZKcEi\033[0m")
         
-        passwordType = get_user_choice()
+        passwordType = get_user_choice(1, 2)
         generatedPassword = passgen.password_generator(passwordType)
         
         print("Generated password:\033[1m", generatedPassword, "\033[0m")

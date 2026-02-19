@@ -21,7 +21,7 @@ def has_master_credentials():
         masterCredentials = get_master_credentials()
         if "hash" in masterCredentials and "salt" in masterCredentials:
             return True
-    except:
+    except Exception:
         return False
 
 
@@ -52,9 +52,15 @@ def hash_login_password(loginPassword):
 
 # Retrieves master credentials from the saved json file
 def get_master_credentials():
-    master_file = Path.home() / ".passman/master.json"
-    with open(master_file, "r") as f:
-        return json.load(f)
+    try:
+        master_file = Path.home() / ".passman/master.json"
+        with open(master_file, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print("File not found")
+    except json.JSONDecodeError:
+        print("File corrupted")        
+    return None
 
 
 # Creates the master credentials via the setup screen, and saves them to json

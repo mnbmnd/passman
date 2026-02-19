@@ -44,14 +44,14 @@ def password_generator(mode):
     if mode == 1:        
         print("\nChoose the number of words for your passphrase (4-8 inclusive)")
         
-        numWords = menus.get_user_choice()            
+        numWords = menus.get_user_choice(4, 8)            
         passphrase = generate_passphrase(numWords)  # Passphrase generator
         
         return passphrase
     elif mode == 2:
         print("\nChoose the number of characters for your password (8-32 inclusive)")
         
-        length = menus.get_user_choice()            
+        length = menus.get_user_choice(8, 32)            
         stringPass = generate_string(length)  # String generator
         
         return stringPass

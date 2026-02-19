@@ -37,13 +37,9 @@ def run_program():
                 system.clear_screen()
                 menus.show_passcheck_menu()
             elif mainMenuChoice == 3:
-                confirmed = int(input("Enter 1 to confirm: "))
-                if confirmed:
-                    system.reset()
-                    menus.show_goodbye()
-                    break
-                else:
-                    continue
+                system.reset()
+                menus.show_goodbye()
+                break
     else:
         print("\nLogin Unsuccessful")
         input("\nPress enter to exit... ")
@@ -53,7 +49,7 @@ def run_program():
 if __name__ == "__main__":
     try:
         run_program()
-    except KeyboardInterrupt: # Turn this into a more generic "except Exception" later
+    except KeyboardInterrupt:
         system.reset()
         menus.show_goodbye()
 
