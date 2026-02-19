@@ -7,6 +7,7 @@
 #######################################################################################
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+from multiprocessing.sharedctypes import Value
 import getpass
 
 import passcheck
@@ -34,10 +35,23 @@ def section_cutter():
     print("\n" + ("-" * 88))
     
 
-def get_user_choice():
-    userOption = int(input("\nAnswer: "))
+def get_user_choice(minChoice, maxChoice):
+    while True:
+        try:
+            userChoice = int(input("\nAnswer: "))
+            if userChoice < minChoice or userChoice > maxChoice:
+                print("\nEnter a valid number!")
+                continue
+            else:
+                break
+        except ValueError:
+            print("\nEnter a valid number!")
     
-    return userOption
+    return userChoice
+
+
+def show_confirmation():
+    pass
 
 
 def show_goodbye():
@@ -94,7 +108,7 @@ def show_main_menu():
     print("2. Go to Passcheck (Checker)")
     print("3. Quit")
     
-    return get_user_choice()
+    return get_user_choice(1, 3)
 
 
 
@@ -105,7 +119,7 @@ def show_passgen_menu():
     print("\n1. Start Generator")
     print("2. Go back to main menu")
     
-    passgenChoice = get_user_choice()
+    passgenChoice = get_user_choice(1, 2)
     
     if passgenChoice == 1:
         section_cutter()
@@ -141,7 +155,7 @@ def show_passcheck_menu():
     print("\n1. Start Checker")
     print("2. Go back to main menu")
     
-    passcheckChoice = get_user_choice()
+    passcheckChoice = get_user_choice(1, 2)
     
     if passcheckChoice == 1:
         section_cutter()

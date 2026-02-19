@@ -28,15 +28,15 @@ def run_program():
         
         while True:
             system.clear_screen()
-            choice = menus.show_main_menu()
+            mainMenuChoice = menus.show_main_menu()
             
-            if choice == 1:
+            if mainMenuChoice == 1:
                 system.clear_screen()
                 menus.show_passgen_menu()
-            elif choice == 2:
+            elif mainMenuChoice == 2:
                 system.clear_screen()
                 menus.show_passcheck_menu()
-            elif choice == 3:
+            elif mainMenuChoice == 3:
                 confirmed = int(input("Enter 1 to confirm: "))
                 if confirmed:
                     system.reset()
